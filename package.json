@@ -1,0 +1,38 @@
+{
+  "name": "cosmic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "helloworld.js",
+  "scripts": {
+    "test": "jest --watchAll  --colors --coverage",
+    "test:nowatch": "jest --colors --coverage",
+    "tsc": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "[[ -z $(git status -s) ]] && tsc --noEmit && npm run test:nowatch || { echo 'Check your TS and make sure you push with no changes or untracked files. You can run *git stash --include-untracked*.' && exit 1; }"
+    }
+  },
+  "devDependencies": {
+    "husky": "^4.2.1",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.17",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
+    "prettier-eslint": "^9.0.1",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
