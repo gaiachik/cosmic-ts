@@ -1,1 +1,1 @@
-# cosmic-js
+# cosmic-ts
