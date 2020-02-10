@@ -10,4 +10,5 @@ If you get weird errors, do try deleting your `node_modules` folder and run step
 
 That's really it.
 
-If you would like to contribute, please open a PR (to the right branch). :)
+## From Chapter 02 - Repository
+Use `make db-start` to start up local dynamo db. You'll need to run `make db-setup` to set up the batches table correctly the first time.
