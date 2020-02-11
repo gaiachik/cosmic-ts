@@ -14,8 +14,10 @@
     }
   },
   "dependencies": {
+    "@types/express": "^4.17.2",
     "aws-sdk": "^2.588.0",
-    "dynamoose": "^1.11.1"
+    "dynamoose": "^1.11.1",
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "husky": "^4.2.1",
