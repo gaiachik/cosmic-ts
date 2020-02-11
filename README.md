@@ -11,4 +11,7 @@ If you get weird errors, do try deleting your `node_modules` folder and run step
 That's really it.
 
 ## From Chapter 02 - Repository
-Use `make db-start` to start up local dynamo db. You'll need to run `make db-setup` to set up the batches table correctly the first time.
+1- Start local dynamoDB: `$ make db-start`
+2- first time setup: `$ make db-setup` (to reset tables, `$ make db-reset-tables`)
+3- run the express api: `$ make start-api`
+
