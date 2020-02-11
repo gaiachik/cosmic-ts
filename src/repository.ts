@@ -1,10 +1,10 @@
-import AWS from 'aws-sdk';
-import Batch from './model';
+import AWS from "aws-sdk";
+import Batch from "./model";
 
 const config = {
-  endpoint: 'localhost:4568',
+  endpoint: "localhost:4568",
   sslEnabled: false,
-  region: 'us-east-1',
+  region: "us-east-1"
 };
 const db = new AWS.DynamoDB.DocumentClient(config);
 
@@ -15,17 +15,22 @@ export interface AbstractBatchRepository {
 class DynamoBatchRepository implements AbstractBatchRepository {
   get = async (ref: string): Promise<Batch | undefined> => {
     const params = {
-      TableName: 'Batch',
+      TableName: "Batch",
 
-      KeyConditionExpression: 'batchRef = :batchRef',
+      KeyConditionExpression: "batchRef = :batchRef",
       ExpressionAttributeValues: {
-        ':batchRef': ref,
-      },
+        ":batchRef": ref
+      }
     };
     const { Items = [] } = await db.query(params).promise();
     const result = Boolean(Items.length) ? Items[0] : {};
     if (result.batchRef) {
-      const batch = new Batch(result.batchRef, result.sku, result.qty, result.eta);
+      const batch = new Batch(
+        result.batchRef,
+        result.sku,
+        result.qty,
+        result.eta
+      );
       batch._setAllocations(result.allocations);
       return batch;
     }
@@ -34,14 +39,14 @@ class DynamoBatchRepository implements AbstractBatchRepository {
   add = async (batch: Batch): Promise<void> => {
     console.log(batch);
     const params = {
-      TableName: 'Batch',
+      TableName: "Batch",
       Item: {
         batchRef: batch.ref,
         eta: batch.eta,
         sku: batch.sku,
         qty: batch._purchasedQty,
-        allocations: Array.from(batch._allocations),
-      },
+        allocations: Array.from(batch._allocations)
+      }
     };
     try {
       await db.put(params).promise();
