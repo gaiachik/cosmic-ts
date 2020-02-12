@@ -11,10 +11,11 @@ const config = {
 const dynamoDb = new AWS.DynamoDB.DocumentClient(config);
 const BATCHREF = 'batch1';
 describe('Repository', () => {
-  const deleteBatch = async (batchRef: string): Promise<void> => {
+  const deleteBatch = async (primKey: string, batchRef: string): Promise<void> => {
     const params = {
       TableName: 'Batch',
       Key: {
+        primKey,
         batchRef,
       },
     };
@@ -23,12 +24,12 @@ describe('Repository', () => {
   afterEach(async done => {
     const params = {
       TableName: 'Batch',
-      ProjectionExpression: 'batchRef',
+      ProjectionExpression: 'primKey, batchRef',
     };
     await dynamoDb.scan(params, async (err, data) => {
       if (err) console.log(err);
       data.Items?.forEach(async item => {
-        await deleteBatch(item.batchRef);
+        await deleteBatch(item.primKey, item.batchRef);
       });
       done();
     });
@@ -65,6 +66,18 @@ describe('Repository', () => {
     expect(retrievedBatch).not.toBeUndefined();
     if (retrievedBatch) {
       expect(retrievedBatch.allocatedQuantity()).toEqual(21);
+    }
+  });
+  it(`test_repository_can_get_list_of_batches`, async () => {
+    const batch1 = new Batch('ref1', 'RUSTY-SOAPDISH', 100);
+    const batch2 = new Batch('ref2', 'RUSTY-FORK', 20);
+    const repository = new DynamoBatchRepository();
+    await repository.add(batch1);
+    await repository.add(batch2);
+    const retrievedBatchList = await repository.list();
+    expect.assertions(1);
+    if (retrievedBatchList) {
+      expect(retrievedBatchList.length).toEqual(2);
     }
   });
   it(`assert_no_data_is_in_the_repo`, async () => {

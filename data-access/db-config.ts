@@ -10,14 +10,22 @@ export const tableName = 'Batch';
 export const tableParams = {
   AttributeDefinitions: [
     {
+      AttributeName: 'primKey',
+      AttributeType: 'S',
+    },
+    {
       AttributeName: 'batchRef',
       AttributeType: 'S',
     },
   ],
   KeySchema: [
     {
-      AttributeName: 'batchRef',
+      AttributeName: 'primKey',
       KeyType: 'HASH',
+    },
+    {
+      AttributeName: 'batchRef',
+      KeyType: 'RANGE',
     },
   ],
   ProvisionedThroughput: {
