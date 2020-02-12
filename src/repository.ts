@@ -51,7 +51,7 @@ class DynamoBatchRepository implements AbstractBatchRepository {
       throw new Error(e.message);
     }
   };
-  list = async (): Promise<Batch[] | undefined> => {
+  list = async (): Promise<Batch[]> => {
     const params = {
       TableName: 'Batch',
       KeyConditionExpression: 'primKey = :primKey',
@@ -61,9 +61,10 @@ class DynamoBatchRepository implements AbstractBatchRepository {
     };
     try {
       const { Items = [] } = await db.query(params).promise();
-      const batches = Items.filter(item => Boolean(item.batchRef)).map(item => {
-        return new Batch(item.batchRef, item.sku, item.qty, item.eta);
-      });
+      const batches =
+        Items.filter(item => Boolean(item.batchRef)).map(item => {
+          return new Batch(item.batchRef, item.sku, item.qty, item.eta);
+        }) || [];
       return batches;
     } catch (e) {
       console.error(e);
