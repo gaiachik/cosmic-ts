@@ -10,18 +10,15 @@ See the full list of my branches [here](https://github.com/gaiachik/cosmic-ts/br
 ## Requirements
 * npm
 
-
-## Setup
+## Setup & running tests
 1) Do run `npm install` everytime you change branch.
 2) To run your tests, use `npm test`.
 
 If you get weird errors, do try deleting your `node_modules` folder and run step 1) again
 
-_(this is only available from chapter 3 onwards:)_
-1- Start local dynamoDB: `$ make db-start`
-2- first time setup: `$ make db-setup` (to reset tables at any point, `$ make db-reset-tables`)
-3- run the express api: `$ make start-api`
-
-
-That's really it.
-
+_(this is  available from chapter 2:)_
+```sh
+make start-db // Starts local dynamoDB:
+make setup-db // first time table setup (if you ever need to, because it's a playground, you can also reset tables with make reset-db-tables
+make start-api // run the express api
+```

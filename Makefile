@@ -1,11 +1,11 @@
-db-start:
+start-db:
 	tsc 
 	node build/data-access/db-start.js 
 
-db-setup:
+setup-db-table:
 	node build/data-access/db-setup-table.js
 
-db-reset-tables:
+reset-db-tables:
 	node build/data-access/db-reset-table.js
 
 start-api:
