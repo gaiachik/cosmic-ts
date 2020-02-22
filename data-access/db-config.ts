@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+export const dbPort = 4568;
 export const awsConfig = {
-  endpoint: 'localhost:4568',
+  endpoint: `localhost:${dbPort}`,
   sslEnabled: false,
   region: 'us-east-1',
 };

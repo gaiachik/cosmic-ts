@@ -1,8 +1,9 @@
 import AWS from 'aws-sdk';
 import Batch from './model';
+import { dbPort } from '../data-access/db-config';
 
 const config = {
-  endpoint: 'localhost:4568',
+  endpoint: `localhost:${dbPort}`,
   sslEnabled: false,
   region: 'us-east-1',
 };

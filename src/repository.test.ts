@@ -1,10 +1,10 @@
 import Batch, { OrderLine } from './model';
 import DynamoBatchRepository, { FakeBatchRepository } from './repository';
-
+import { dbPort } from '../data-access/db-config';
 import AWS from 'aws-sdk';
 
 const config = {
-  endpoint: 'localhost:4568',
+  endpoint: `localhost:${dbPort}`,
   sslEnabled: false,
   region: 'us-east-1',
 };

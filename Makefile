@@ -3,10 +3,12 @@ start-db:
 	node build/data-access/db-start.js 
 
 setup-db-table:
-	node build/data-access/db-setup-table.js
+	tsc
+	node build/data-access/table-setup.js setup
 
 reset-db-tables:
-	node build/data-access/db-reset-table.js
+	tsc
+	node build/data-access/table-setup.js reset
 
 start-api:
 	tsc 
