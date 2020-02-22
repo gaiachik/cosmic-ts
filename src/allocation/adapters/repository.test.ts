@@ -1,6 +1,6 @@
-import Batch, { OrderLine } from './model';
+import Batch, { OrderLine } from '../domain/model';
 import DynamoBatchRepository, { FakeBatchRepository } from './repository';
-import { dbPort } from '../data-access/db-config';
+import { dbPort } from './data-access/db-config';
 import AWS from 'aws-sdk';
 
 const config = {

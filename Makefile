@@ -1,18 +1,18 @@
 start-db:
 	tsc 
-	node build/data-access/db-start.js 
+	node build/adapters/data-access/db-start.js 
 
 setup-db-table:
 	tsc
-	node build/data-access/table-setup.js setup
+	node build/adapters/data-access/table-setup.js setup
 
 reset-db-tables:
 	tsc
-	node build/data-access/table-setup.js reset
+	node build/adapters/data-access/table-setup.js reset
 
 start-api:
 	tsc 
-	node build/api.js
+	node build/entrypoints/api.js
 
 test:
 	npm test

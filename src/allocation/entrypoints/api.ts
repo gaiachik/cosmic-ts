@@ -1,5 +1,5 @@
 import express from 'express';
-import allocate from './app/allocate-handler';
+import allocate from './allocate-handler';
 const app = express();
 const port = 3456;
 

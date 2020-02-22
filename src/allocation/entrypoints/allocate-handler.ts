@@ -1,5 +1,5 @@
-import { OrderLine, allocate } from '../src/model';
-import DynamoBatchRepository from '../src/repository';
+import { OrderLine, allocate } from '../domain/model';
+import DynamoBatchRepository from '../adapters/repository';
 
 const repository = new DynamoBatchRepository();
 
