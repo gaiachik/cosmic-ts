@@ -10,11 +10,35 @@ See the full list of my branches [here](https://github.com/gaiachik/cosmic-ts/br
 ## Requirements
 * npm
 
+## Setup & running tests
+```sh
+# everytime you change branch:
+npm install
+# To run your tests:
+## except in chapter 1, where it is "npm test"
+make test
 
-## Setup
-1) Do run `npm install` everytime you change branch.
-2) To run your tests, use `npm test`.
+# If you get weird errors, 
+# do try deleting your `node_modules` folder and run step 1) again
+```
+_( available from chapter 2: )_
+```sh
+# Start local dynamoDB:
+make start-db 
 
-If you get weird errors, do try deleting your `node_modules` folder and run step 1) again
+# create dynamo db Tables for the exercise
+# do it once the prev step succeeds
+make setup-db-table 
 
-That's really it.
+# run the express api
+make start-api 
+
+# Try out the allocate endpoint: 
+# http://localhost:3456/allocate?orderid=str&qty=num&sku=str
+```
+
+```sh
+# if you ever need to, you can also reset tables 
+# with 
+make reset-db-tables
+```
