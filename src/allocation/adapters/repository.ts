@@ -75,8 +75,9 @@ class DynamoBatchRepository implements AbstractBatchRepository {
 }
 export class FakeBatchRepository implements AbstractBatchRepository {
   batches: { [key: string]: Batch };
-  constructor() {
+  constructor(arrayOfBatches?: Batch[]) {
     this.batches = {};
+    if (arrayOfBatches?.length) arrayOfBatches.map(batch => this.add(batch));
   }
   get = async (ref: string): Promise<Batch | undefined> => {
     return this.batches[ref];
