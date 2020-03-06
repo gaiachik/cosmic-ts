@@ -5,4 +5,7 @@ const port = 3456;
 
 app.route('/allocate').get(allocate);
 
-app.listen(port, () => console.log(`Allocating app listening on port ${port}!`));
+const server = app.listen(port, function() {
+  console.log('Allocating app listening at port %s', port);
+});
+export default server;
