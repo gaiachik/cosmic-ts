@@ -4,8 +4,10 @@
   "description": "",
   "main": "helloworld.js",
   "scripts": {
-    "test": "jest --watchAll  --colors --coverage",
-    "test:nowatch": "jest --colors --coverage",
+    "test": "jest --watchAll  --colors --coverage -- ./tests/unit",
+    "test:nowatch": "jest --colors --coverage -- ./tests/unit",
+    "test:e2e": "jest --colors -- ./tests/e2e",
+    "test:integration": "jest --colors -- ./tests/integration",
     "tsc": "tsc"
   },
   "husky": {

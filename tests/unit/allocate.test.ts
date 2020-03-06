@@ -1,4 +1,4 @@
-import Batch, { OrderLine, allocate } from './model';
+import Batch, { OrderLine, allocate } from '../../src/allocation/domain/model';
 
 const today: Date = new Date();
 
